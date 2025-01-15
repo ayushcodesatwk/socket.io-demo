@@ -1,0 +1,36 @@
+socket.io
+---------
+
+http is a unidirectional connection between the client and the server
+we need to request first in order to get a response from the server
+
+websockets are used to make a bidirectional connection between the 
+client and the server
+
+If a connection is established, the client can send messages or data to the server
+and the server can send and receive the data from the client until the connection is closed
+
+socket.io is a library that allows us to establish a connection between the client and the server
+
+for example- 
+
+suppose there's a circuit board (circuit board is io) and there are 
+plugs attached to the circuit board {these plugs are nothing but sockets ( here each socket are particular client) }
+where each socket has it's own id.
+
+if we are using io.emit we are talking about whole circuit (server)
+if we are using socket we are talking about an individual user
+----------------------
+
+if we create event using io.emit('event', 'hi') this we are triggering event is the server.
+if we create event using socket.emit('btn', 4) this means we are triggering event for a 
+particular user (socket);
+
+if we want to trigger an event for all socket except a specific socket.
+we make use of socket.broadcast.emit(....)
+
+---------------------
+
+if a socket wants to talk to another socket,
+so a socket has it's own id and we use this id to make a connection or to talk
+we make use of- socket.to(socketId).emit('event', ..)
