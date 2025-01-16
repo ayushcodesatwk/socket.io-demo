@@ -25,16 +25,28 @@ io.on("connection", (socket) => {
   })
 
   // msg event 
-  socket.on("msg", (msg) => {
-    console.log("msg event triggered--", msg);
+  socket.on("msg", ({ message, roomId}) => {
+    console.log("msg event triggered--", message, roomId);
     // io means circuit and it will broadcast the message to all users
     // io.emit("received msg", msg);
 
     //except the user that sent the message
     //we will broadcast the message to other users
-    socket.broadcast.emit("received msg", msg);
-  }) 
-})
+    // socket.emit("received msg", msg);
+
+    // io.to(msg.room).emit("received msg", msg);
+
+    socket.to(roomId).emit("received msg", {message, roomId});
+
+  });
+  
+  // join room event
+  // it must be a string not object
+  socket.on("join-room", (room) => {
+    socket.join(room);
+    console.log("joined room--", room);
+  })
+});
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

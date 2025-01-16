@@ -34,3 +34,15 @@ we make use of socket.broadcast.emit(....)
 if a socket wants to talk to another socket,
 so a socket has it's own id and we use this id to make a connection or to talk
 we make use of- socket.to(socketId).emit('event', ..)
+
+-------------------------
+
+//roomName must be a string not an object
+socket.join(roomName);
+
+when we create a room the people joined the room will
+get the message except the user who sent that message.
+
+---------------------------
+
+
